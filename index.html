@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>lengthconverter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+    <!--weight converter-->
+    <div class="container pt-5">
+        <div class="row">
+          <div class="col-md-6">
+            <h1>Weight Converter</h1>
+            <div class="form-group">
+              <input id="weightInput" type="number" class="form-control form-control-lg" placeholder="Enter weight...">
+            </div>
+            <div class="btn-group" role="group" aria-label="Weight Converter">
+              <button id="gramsBtn" type="button" class="btn btn-primary">Grams</button>
+              <button id="kgBtn" type="button" class="btn btn-success">Kilograms</button>
+              <button id="ozBtn" type="button" class="btn btn-danger">Ounces</button>
+            </div>
+            <div id="output">
+              <div class="card card-primary mb-2">
+                <div class="card-block">
+                  <h4>Grams:</h4>
+                  <div id="gramsOutput"></div>
+                </div>
+              </div>
+            
+              <div class="card card-success mb-2">
+                <div class="card-block">
+                  <h4>Kilograms:</h4>
+                  <div id="kgOutput"></div>
+                </div>
+              </div>
+            
+              <div class="card card-danger mb-2">
+                <div class="card-block">
+                  <h4>Ounces:</h4>
+                  <div id="ozOutput"></div>
+                </div>
+              </div>
+            </div>  
+          </div>
+           <!--length converter-->
+          <div class="col-md-6">
+            <h1>Length Converter</h1>
+            <div class="form-group">
+              <input id="meterInput" type="number" class="form-control form-control-lg" placeholder="Enter meter...">
+            </div>
+            <div class="btn-group" role="group" aria-label="Meter Converter">
+              <button id="kmBtn" type="button" class="btn btn-primary">Kilometers</button>
+              <button id="cmBtn" type="button" class="btn btn-success">Centimeter</button>
+              <button id="mlBtn" type="button" class="btn btn-danger">Millimeters</button>
+            </div>
+            <div id="output">
+              <div class="card card-primary mb-2">
+                <div class="card-block">
+                  <h4>Kilometers:</h4>
+                  <div id="kiloOutput"></div>
+                </div>
+              </div>
+            
+              <div class="card card-success mb-2">
+                <div class="card-block">
+                  <h4>Centimeters:</h4>
+                  <div id="cmOutput"></div>
+                </div>
+              </div>
+            
+              <div class="card card-danger mb-2">
+                <div class="card-block">
+                  <h4>Millimeters:</h4>
+                  <div id="mlOutput"></div>
+                </div>
+              </div>
+            </div>  
+          </div>
+        <!--time converter-->
+          <div class="col-md-6 pt-5">
+            <h1>Time Converter</h1>
+            <div class="form-group">
+              <input id="minuteInput" type="number" class="form-control form-control-lg" placeholder="Enter minute...">
+            </div>
+            <div class="btn-group" role="group" aria-label="Minute Converter">
+              <button id="msBtn" type="button" class="btn btn-primary">Millisecond</button>
+              <button id="scBtn" type="button" class="btn btn-success">Second</button>
+              <button id="hrBtn" type="button" class="btn btn-danger">Hour</button>
+            </div>
+            <div id="output">
+              <div class="card card-primary mb-2">
+                <div class="card-block">
+                  <h4>Millisecond:</h4>
+                  <div id="milliOutput"></div>
+                </div>
+              </div>
+            
+              <div class="card card-success mb-2">
+                <div class="card-block">
+                  <h4>Second:</h4>
+                  <div id="scOutput"></div>
+                </div>
+              </div>
+            
+              <div class="card card-danger mb-2">
+                <div class="card-block">
+                  <h4>Hour:</h4>
+                  <div id="hrOutput"></div>
+                </div>
+              </div>
+            </div>  
+          </div>
+           <!--temperature converter-->
+          <div class="col-md-6 pt-5">
+            <h1>Temperature Converter</h1>
+            <div class="form-group">
+              <input id="celsiusInput" type="number" class="form-control form-control-lg" placeholder="Enter celsius...">
+            </div>
+            <div class="btn-group" role="group" aria-label="Celsius Converter">
+              <button id="kBtn" type="button" class="btn btn-primary">Kelvin</button>
+              <button id="fBtn" type="button" class="btn btn-success">Fahrenheit</button>
+            </div>
+            <div id="output">
+              <div class="card card-primary mb-2">
+                <div class="card-block">
+                  <h4>Kelvin:</h4>
+                  <div id="kelvinOutput"></div>
+                </div>
+              </div>          
+              <div class="card card-success mb-2">
+                <div class="card-block">
+                  <h4>Fahrenheit:</h4>
+                  <div id="fOutput"></div>
+                </div>
+              </div>
+              
+          </div>
+          
+
+        </div>
+      </div>
+
+      
+<script>
+
+  //weight converter
+ // Get the input and output elements
+const weightInput = document.getElementById("weightInput");
+const gramsOutput = document.getElementById("gramsOutput");
+const kgOutput = document.getElementById("kgOutput");
+const ozOutput = document.getElementById("ozOutput");
+
+// Get the button elements
+const gramsBtn = document.getElementById("gramsBtn");
+const kgBtn = document.getElementById("kgBtn");
+const ozBtn = document.getElementById("ozBtn");
+
+// Add event listeners to the buttons
+gramsBtn.addEventListener("click", convertToGrams);
+kgBtn.addEventListener("click", convertToKg);
+ozBtn.addEventListener("click", convertToOz);
+
+// Function to convert the weight to grams
+function convertToGrams() {
+  if (weightInput.value === "") {
+    gramsOutput.innerHTML = "Please enter a weight";
+    kgOutput.innerHTML = "";
+    ozOutput.innerHTML = "";
+  } else {
+    const grams = parseFloat(weightInput.value) * 453.592;
+    gramsOutput.innerHTML = grams.toFixed(2);
+    kgOutput.innerHTML = "";
+    ozOutput.innerHTML = "";
+  }
+}
+
+// Function to convert the weight to kilograms
+function convertToKg() {
+  if (weightInput.value === "") {
+    kgOutput.innerHTML = "Please enter a weight";
+    gramsOutput.innerHTML = "";
+    ozOutput.innerHTML = "";
+  } else {
+    const kg = parseFloat(weightInput.value) * 0.453592;
+    kgOutput.innerHTML = kg.toFixed(2);
+    gramsOutput.innerHTML = "";
+    ozOutput.innerHTML = "";
+  }
+}
+
+// Function to convert the weight to ounces
+function convertToOz() {
+  if (weightInput.value === "") {
+    ozOutput.innerHTML = "Please enter a weight";
+    gramsOutput.innerHTML = "";
+    kgOutput.innerHTML = "";
+  } else {
+    const oz = parseFloat(weightInput.value) * 16;
+    ozOutput.innerHTML = oz.toFixed(2);
+    gramsOutput.innerHTML = "";
+    kgOutput.innerHTML = "";
+  }
+}
+
+
+
+//length converter
+// Get the input and output elements
+const meterInput = document.getElementById("meterInput");
+const kmOutput = document.getElementById("kiloOutput");
+const cmOutput = document.getElementById("cmOutput");
+const mlOutput = document.getElementById("mlOutput");
+
+// Get the button elements
+const kmBtn = document.getElementById("kmBtn");
+const cmBtn = document.getElementById("cmBtn");
+const mlBtn = document.getElementById("mlBtn");
+
+// Add event listeners to the buttons
+kmBtn.addEventListener("click", convertToKilometers);
+cmBtn.addEventListener("click", convertToCentimeters);
+mlBtn.addEventListener("click", convertToMillimeters);
+
+
+
+// Function to convert meters to kilometers
+function convertToKilometers() {
+    if (meterInput.value === ""){
+        kmOutput.innerHTML = "Please enter a meter";
+        cmOutput.innerHTML = "";
+        mlOutput.innerHTML = "";
+    } else {
+        const kilometers = parseFloat(meterInput.value) / 1000;
+        kmOutput.innerHTML = kilometers.toFixed(2);
+        cmOutput.innerHTML = "";
+        mlOutput.innerHTML = "";
+    }
+}
+
+function convertToCentimeters() {
+    if (meterInput.value === ""){
+        cmOutput.innerHTML = "Please enter a meter";
+        kmOutput.innerHTML = "";
+        mlOutput.innerHTML = "";
+    } else {
+        const centimeters = parseFloat(meterInput.value) * 100;
+        cmOutput.innerHTML = centimeters.toFixed(2);
+        mlOutput.innerHTML = "";
+        kmOutput.innerHTML = "";
+    }
+}
+
+function convertToMillimeters() {
+    if (meterInput.value === ""){
+        mlOutput.innerHTML = "Please enter a meter";
+        kmOutput.innerHTML = "";
+        cmOutput.innerHTML = "";
+    } else {
+        const millimeters = parseFloat(meterInput.value) * 1000;
+        mlOutput.innerHTML = millimeters.toFixed(2);
+        kmOutput.innerHTML = "";
+        cmOutput.innerHTML = "";
+    }
+}
+
+
+//time converter
+// Get the input and output elements
+const minuteInput = document.getElementById("minuteInput");
+const milliOutput = document.getElementById("milliOutput");
+const scOutput = document.getElementById("scOutput");
+const hrOutput = document.getElementById("hrOutput");
+
+// Get the button elements
+const msBtn = document.getElementById("msBtn");
+const scBtn = document.getElementById("scBtn");
+const hrBtn = document.getElementById("hrBtn");
+
+// Add event listeners to the buttons
+msBtn.addEventListener("click", convertTomilli);
+scBtn.addEventListener("click", convertToseconds);
+hrBtn.addEventListener("click", convertTohours);
+
+function convertTomilli() {
+  if (minuteInput.value === "") {
+    milliOutput.innerHTML = "Please enter a minute";
+    scOutput.innerHTML = "";
+    hrOutput.innerHTML = "";
+  } else {
+    const milli = parseFloat(minuteInput.value) * 60000;
+    milliOutput.innerHTML = milli.toFixed(2);
+    scOutput.innerHTML = "";
+    hrOutput.innerHTML = "";
+  }
+}
+
+function convertToseconds() {
+  if (minuteInput.value === "") {
+    scOutput.innerHTML = "Please enter a minute";
+    milliOutput.innerHTML = "";
+    hrOutput.innerHTML = "";
+  } else {
+    const sc = parseFloat(minuteInput.value) * 60;
+    scOutput.innerHTML = sc.toFixed(2);
+    milliOutput.innerHTML = "";
+    hrOutput.innerHTML = "";
+  }
+}
+
+function convertTohours() {
+  if (minuteInput.value === "") {
+    hrOutput.innerHTML = "Please enter a minute";
+    milliOutput.innerHTML = "";
+    scOutput.innerHTML = "";
+  } else {
+    const hr = parseFloat(minuteInput.value) * 0.0167   ;
+    hrOutput.innerHTML = hr.toFixed(2);
+    milliOutput.innerHTML = "";
+    scOutput.innerHTML = "";
+  }
+}
+
+
+//temperature converter
+const celsiusInput = document.getElementById("celsiusInput");
+const kelvinOutput = document.getElementById("kelvinOutput");
+const fOutput = document.getElementById("fOutput");
+
+
+// Get the button elements
+const kBtn = document.getElementById("kBtn");
+const fBtn = document.getElementById("fBtn");
+
+
+// Add event listeners to the buttons
+kBtn.addEventListener("click", convertTokelvin);
+fBtn.addEventListener("click", convertToFahrenheit);
+
+
+function convertTokelvin() {
+  if (celsiusInput.value === "") {
+    kelvinOutput.innerHTML = "Please enter a celsius";
+    fOutput.innerHTML = "";
+    
+  } else {
+    const kelvin = parseFloat(celsiusInput.value) + 273.15;
+    kelvinOutput.innerHTML = kelvin.toFixed(2);
+    fOutput.innerHTML = "";
+    
+  }
+}
+
+function convertToFahrenheit() {
+  if (celsiusInput.value === "") {
+    fOutput.innerHTML = "Please enter a celsius";
+    kelvinOutput.innerHTML = "";
+    
+  } else {
+    const f = parseFloat(celsiusInput.value) * 1.8000 + 32.00;
+    fOutput.innerHTML = f.toFixed(2);
+    kelvinOutput.innerHTML = "";
+   
+  }
+}
+
+
+</script>
+
+</body>
+</html>
